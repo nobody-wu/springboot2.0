@@ -30,5 +30,6 @@ public class ConsumerRedisListener implements MessageListener {
 
 
 
+
     }
 }
