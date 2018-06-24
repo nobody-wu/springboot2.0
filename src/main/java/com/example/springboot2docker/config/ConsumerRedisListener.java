@@ -28,5 +28,6 @@ public class ConsumerRedisListener implements MessageListener {
         Object value = stringRedisTemplate.getValueSerializer().deserialize(message.getBody());
         System.out.println("consumer message: " + String.valueOf(value));
 
+
     }
 }
