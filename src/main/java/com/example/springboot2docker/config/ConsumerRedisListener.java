@@ -29,5 +29,6 @@ public class ConsumerRedisListener implements MessageListener {
         System.out.println("consumer message: " + String.valueOf(value));
 
 
+
     }
 }
