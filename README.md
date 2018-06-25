@@ -6,3 +6,12 @@
     ```
         为了更方便的使用,demo简化了jedis连接池的配置、缓存管理和生成key的配置
     ```
+3. 添加几种常用的原生http post请求方式:HttpClientHelper
+
+    ```
+        1. HttpURLConnection
+        2. URLConnection
+        3. HttpURLConnection
+        4. HttpClient
+        5. socket
+    ```
