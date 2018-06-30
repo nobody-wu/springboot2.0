@@ -1,0 +1,46 @@
+## 表示使用第三代语法来构建 docker-compose.yaml 文件。
+version: '3'
+## 用来表示 compose 需要启动的服务，我们可以看出此文件中有三个服务分别为：nginx、mysql、app。
+services:
+  nginx:
+   ## 容器名称
+   container_name: wjp-nginx
+   image: nginx:1.13
+   restart: always
+   ports:
+   - 80:80
+   - 443:443
+   ## 加载本地目录下的配置文件到容器目标地址下
+   volumes:
+   - ./nginx/conf.d:/etc/nginx/conf.d
+
+  mysql:
+   container_name: wjp-mysql
+   image: mysql/mysql-server:5.7
+   ## 此节点下的信息会当作环境变量传入容器，此示例中 mysql 服务配置了数据库、密码和权限信息
+   environment:
+    MYSQL_DATABASE: springboot
+    MYSQL_ROOT_PASSWORD: wujiapeng123
+    MYSQL_ROOT_HOST: '%'
+   ## 表示对外开放的端口
+   ports:
+   - "3308:3308"
+   restart: always
+
+  app:
+    ## 表示如果服务启动不成功会一直尝试
+    restart: always
+    build: ./app
+    working_dir: /app
+    volumes:
+      - ./app:/app
+      - ~/.m2:/root/.m2
+    expose:
+      - "8080"
+    ## 可以配置依赖服务，表示需要先启动 depends_on 下面的服务后，再启动本服务
+    depends_on:
+      - nginx
+      - mysql
+    ## 表示以这个命令来启动项目
+    ## -Dspring-boot.run.profiles=docker表示使用 application-docker.properties文件配置信息进行启动。
+    command: mvn clean spring-boot:run -Dspring-boot.run.profiles=docker
