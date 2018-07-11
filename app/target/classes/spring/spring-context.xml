@@ -17,4 +17,13 @@
         @annotation(com.example.springboot2docker.annotation.FeizhuSubmit)"/>
         <aop:advisor advice-ref="FeizhuSubmitInterceptor" pointcut-ref="feizhuSubmitMethodPointcut" />
     </aop:config>
+
+    <!--<bean id="idService" class="com.robert.vesta.service.factory.IdServiceFactoryBean"-->
+          <!--init-method="init">-->
+        <!--&lt;!&ndash;<property name="providerType" value="IP_CONFIGURABLE"/>&ndash;&gt;-->
+        <!--<property name="providerType" value="PROPERTY"/>-->
+        <!--&lt;!&ndash;<property name="ips" value="${vesta.ips}"/>&ndash;&gt;-->
+        <!--<property name="genMethod" value="${vesta.genMethod}"/>-->
+        <!--<property name="machineId" value="${vesta.machine}"/>-->
+    <!--</bean>-->
 </beans>
