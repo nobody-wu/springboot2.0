@@ -15,9 +15,11 @@
         4. HttpClient
         5. socket
     ```
-    
-    
+      
 4. 自定义注解(@FeizhuSubmit)传递参数
 
-5. Docker Compose + Spring Boot + Nginx + Mysql配置
+5. 添加Docker-Tool API
+
+6. 添加vesta发号器（嵌入发布模式）
+
 
