@@ -13,7 +13,7 @@ import javax.annotation.Resource;
  * @Description:
  * @Date: created in 13:59 2018/6/24
  */
-@Configuration
+//@Configuration
 public class RedisConfig extends CachingConfigurerSupport{
 
     @Resource
