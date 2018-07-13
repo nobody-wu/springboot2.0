@@ -20,6 +20,11 @@ Appenders:
       Filters:
         ThresholdFilter:
           - level: info
+          # 以下配置说明：
+            # onmatch="accept" 表示匹配此级别及以上
+            # onmatch="deny" 表示不匹配此级别及以上
+            # onmismatch="deny" 表示不匹配比此日志级别低的,只输出info及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）
+            # onmismatch="neutral" 表示匹配比此日志级别低的,不输出info及以上级别的信息（onMatch），其他的输出（onMismatch）
 #            onMatch: ACCEPT
 #            onMismatch: DENY
       ignoreExceptions: false
