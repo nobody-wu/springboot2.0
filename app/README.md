@@ -22,38 +22,38 @@
 
 6. 使用yml配置文件，添加log4j日志配置
 
-```
-    使用yml要非常小心，排序空格一定要对齐
-```
+    ```
+        使用yml要非常小心，排序空格一定要对齐
+    ```
 
 7. 添加vesta发号器（嵌入发布模式）
-- 如果你有多台机器，递增机器ID，同一服务中机器ID不能重复。 
--  这里，生成方式genMethod为0表示使用嵌入发布模式 
-- type为0, 表示最大峰值型，如果想要使用最小粒度型，则设置为1
+    - 如果你有多台机器，递增机器ID，同一服务中机器ID不能重复。 
+    -  这里，生成方式genMethod为0表示使用嵌入发布模式 
+    - type为0, 表示最大峰值型，如果想要使用最小粒度型，则设置为1
 
 8. spring aop
 
-- 使用aop:aspect
+    - 使用aop:aspect(大多用于日志，缓存)
 
-```
-    <aop:config>
-        <aop:pointcut expression="execution(* *.sleep(..))" id="sleepPointcut"/>
-        <aop:aspect ref="sleepHelperAspect">
-            <!--前置通知-->
-            <aop:before method="beforeSleep" pointcut-ref="sleepPointcut"/>
-            <!--后置通知-->
-            <aop:after method="afterSleep" pointcut-ref="sleepPointcut"/>
-        </aop:aspect>
-    </aop:config>
-```
+    ```
+        <aop:config>
+            <aop:pointcut expression="execution(* *.sleep(..))" id="sleepPointcut"/>
+            <aop:aspect ref="sleepHelperAspect">
+                <!--前置通知-->
+                <aop:before method="beforeSleep" pointcut-ref="sleepPointcut"/>
+                <!--后置通知-->
+                <aop:after method="afterSleep" pointcut-ref="sleepPointcut"/>
+            </aop:aspect>
+        </aop:config>
+    ```
 
-- 使用aop:advisor
+    - 使用aop:advisor(大多用于事务管理)
 
-```
-    <aop:config>
-        <aop:pointcut expression="execution(* *.sleep(..))" id="sleepPointcut"/>
-        <aop:advisor advice-ref="sleepHelper" pointcut-ref="sleepPointcut"/>
-    </aop:config>
-```
+    ```
+        <aop:config>
+            <aop:pointcut expression="execution(* *.sleep(..))" id="sleepPointcut"/>
+            <aop:advisor advice-ref="sleepHelper" pointcut-ref="sleepPointcut"/>
+        </aop:config>
+    ```
 
-- @Aspect注解
+    - @Aspect注解
