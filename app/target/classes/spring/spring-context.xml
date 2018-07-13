@@ -18,4 +18,10 @@
         <aop:advisor advice-ref="FeizhuSubmitInterceptor" pointcut-ref="feizhuSubmitMethodPointcut" />
     </aop:config>
 
+    <aop:config>
+        <aop:pointcut id="systemException" expression="execution(* com.example.springboot2docker.controller.*.*(..))"/>
+        <aop:advisor advice-ref="systemExceptionThrowsAdvice" pointcut-ref="systemException"/>
+    </aop:config>
+    <bean id="systemExceptionThrowsAdvice" class="com.example.springboot2docker.manager.SystemExceptionThrowsAdvice"/>
+
 </beans>

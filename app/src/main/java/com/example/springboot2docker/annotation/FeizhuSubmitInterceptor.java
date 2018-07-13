@@ -37,8 +37,10 @@ public class FeizhuSubmitInterceptor implements MethodInterceptor, Serializable 
 
         EvaluationContext evaluationContext = createEvaluationContext(methodInvocation, method);
         String num = getExpression(feizhuSubmit.value()).getValue(evaluationContext, String.class);
-        System.out.println(".....num:"+num);
-        return methodInvocation.proceed();
+        System.out.println("在方法执行之前:"+num);
+        Object o = methodInvocation.proceed();
+        System.out.println("在方法执行之后:"+num);
+        return o;
     }
 
     private EvaluationContext createEvaluationContext(MethodInvocation invocation, Method method) {
