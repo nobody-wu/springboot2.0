@@ -1,11 +1,3 @@
-#spring:
-##  http:
-##    multipart:
-##      max-file-size: 64MB
-##      max-request-size: 64MB
-#  profiles:
-#    active: @profiles.active@
-
 # 共有8个级别，按照从低到高为：ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF。
 
 Appenders:
@@ -16,7 +8,7 @@ Appenders:
       pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
 
   RollingFile: # 输出到文件，超过10GB归档
-    - name: ROLLING_INFO_FILE
+    - name: ROLLING_TREACE_FILE
       Filters:
         ThresholdFilter:
           - level: info
@@ -27,6 +19,21 @@ Appenders:
             # onmismatch="neutral" 表示匹配比此日志级别低的,不输出info及以上级别的信息（onMatch），其他的输出（onMismatch）
 #            onMatch: ACCEPT
 #            onMismatch: DENY
+      ignoreExceptions: false
+      fileName: /data/www/logs/apps/springboot/trace.log
+      filePattern: "/data/www/logs/apps/springboot/%d{yyyy-MM-dd}/trace -%d{yyyy-MM-dd}-%i.log.gz"
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: "10 GB"
+      DefaultRolloverStrategy:
+        max: 1000 # 文件最多1000个
+
+    - name: ROLLING_INFO_FILE
+      Filters:
+        ThresholdFilter:
+          - level: info
       ignoreExceptions: false
       fileName: /data/www/logs/apps/springboot/info.log
       filePattern: "/data/www/logs/apps/springboot/%d{yyyy-MM-dd}/info -%d{yyyy-MM-dd}-%i.log.gz"
@@ -56,12 +63,20 @@ Appenders:
         max: 1000 # 文件最多1000个
 
 Loggers:
+  # <!-- AsyncRoot - 异步记录日志 - 需要LMAX Disruptor的支持 -->
+#  AsyncRoot:
+#    level: info
+#    includeLocation: true
+#    AppenderRef:
+#      - ref: ROLLING_TREACE_FILE
+#      - ref: CONSOLE
   Root:
     level: info
     AppenderRef:
       - ref: CONSOLE
       - ref: ROLLING_INFO_FILE
       - ref: ROLLING_ERROR_FILE
+      - ref: ROLLING_TREACE_FILE
 #  Logger: #单独设置某些包的输出级别
 #    - name: com.example.springboot2docker #复数加上-
 #      additivity: false #去除重复的log
@@ -69,30 +84,3 @@ Loggers:
 #      AppenderRef:
 #        - ref: CONSOLE #复数加上-
 #        - ref: ROLLING_INFO_FILE #复数加上
-
-#---
-#spring:
-#  profiles: test
-#
-#server:
-#  port: 9205
-#
-#---
-#spring:
-#  profiles: dev
-#
-# # jackson时间格式化
-##  jackson:
-##      time-zone: GMT+8
-##      date-format: yyyy-MM-dd HH:mm:ss
-#server:
-#  port: 9205
-#
-#
-#---
-#spring:
-#  profiles: pro
-#
-#
-#server:
-#  port: 8080
