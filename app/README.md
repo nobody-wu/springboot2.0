@@ -65,8 +65,8 @@
 
 ### v1.0.0
 
-```
 2018-07-20:
-    1、springboot集成mybatis
-    2、添加动态数据源解决方案dynamic.datasource（对外提供的版本）
-```
+
+- springboot集成mybatis
+
+- 添加动态数据源解决方案[dynamic.datasource](https://github.com/sunnyWu1104/dynamic-dataresource)（对外提供的版本）
