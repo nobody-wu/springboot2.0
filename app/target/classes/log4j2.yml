@@ -11,7 +11,7 @@ Appenders:
     - name: ROLLING_TREACE_FILE
       Filters:
         ThresholdFilter:
-          - level: info
+          - level: trace
           # 以下配置说明：
             # onmatch="accept" 表示匹配此级别及以上
             # onmatch="deny" 表示不匹配此级别及以上
@@ -64,19 +64,21 @@ Appenders:
 
 Loggers:
   # <!-- AsyncRoot - 异步记录日志 - 需要LMAX Disruptor的支持 -->
-#  AsyncRoot:
-#    level: info
-#    includeLocation: true
-#    AppenderRef:
-#      - ref: ROLLING_TREACE_FILE
-#      - ref: CONSOLE
-  Root:
+  AsyncRoot:
     level: info
+    includeLocation: true
     AppenderRef:
       - ref: CONSOLE
       - ref: ROLLING_INFO_FILE
       - ref: ROLLING_ERROR_FILE
       - ref: ROLLING_TREACE_FILE
+#  Root:
+#    level: info
+#    AppenderRef:
+#      - ref: CONSOLE
+#      - ref: ROLLING_INFO_FILE
+#      - ref: ROLLING_ERROR_FILE
+#      - ref: ROLLING_TREACE_FILE
 #  Logger: #单独设置某些包的输出级别
 #    - name: com.example.springboot2docker #复数加上-
 #      additivity: false #去除重复的log

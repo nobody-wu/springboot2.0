@@ -1,6 +1,7 @@
 package com.example.springboot2docker.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.example.springboot2docker.service.AppUserMessageService;
 import com.robert.vesta.service.intf.IdService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +9,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @Author: wujiapeng
@@ -22,6 +25,9 @@ public class IDController {
 
     private IdService idService;
 
+    @Resource
+    private AppUserMessageService appUserMessageService;
+
     public IDController() {
         ApplicationContext ac = new ClassPathXmlApplicationContext(
                 "spring/vesta-rest-main.xml");
@@ -31,6 +37,7 @@ public class IDController {
 
     @RequestMapping("/id")
     public void getId(){
+        System.out.println(appUserMessageService.selectByPrimaryKey("xtt"));
         logger.info(JSONObject.toJSONString(idService.genId()));
         logger.trace(JSONObject.toJSONString(idService.genId()));
     }

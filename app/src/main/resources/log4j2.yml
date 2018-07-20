@@ -11,7 +11,7 @@ Appenders:
     - name: ROLLING_TREACE_FILE
       Filters:
         ThresholdFilter:
-          - level: info
+          - level: trace
           # 以下配置说明：
             # onmatch="accept" 表示匹配此级别及以上
             # onmatch="deny" 表示不匹配此级别及以上
