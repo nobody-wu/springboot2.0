@@ -37,7 +37,6 @@ public class IDController {
 
     @RequestMapping("/id")
     public void getId(){
-        System.out.println(appUserMessageService.selectByPrimaryKey("xtt"));
         logger.info(JSONObject.toJSONString(idService.genId()));
         logger.trace(JSONObject.toJSONString(idService.genId()));
     }

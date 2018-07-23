@@ -1,15 +1,12 @@
 package com.example.springboot2docker.dao.impl;
 
 import com.example.springboot2docker.dao.AppUserMessageDao;
-import com.example.springboot2docker.dao.BaseMapper;
 import com.example.springboot2docker.entity.AppUserMessageEntity;
-import com.example.springboot2docker.mapper.AppUserMessageMapper;
 import com.google.common.collect.Maps;
 import datasource.DataSource;
 import datasource.DynamicSqlSessionDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 

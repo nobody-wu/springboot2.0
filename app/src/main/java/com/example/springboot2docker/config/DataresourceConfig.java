@@ -15,7 +15,7 @@ import java.util.Properties;
 
 /**
  * @Author: wujiapeng
- * @Description:
+ * @Description: https://blog.csdn.net/l1028386804/article/details/80957448
  * @Date: created in 15:11 2018/7/20
  */
 @Configuration
@@ -42,8 +42,7 @@ public class DataresourceConfig {
         return entityManagerFactoryBean;
     }
 
-    protected Properties buildHibernateProperties()
-    {
+    protected Properties buildHibernateProperties() {
         Properties hibernateProperties = new Properties();
 
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
@@ -60,5 +59,17 @@ public class DataresourceConfig {
 
         return hibernateProperties;
     }
+
+
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        return new JpaTransactionManager();
+//    }
+//
+//    @Bean
+//    public TransactionTemplate transactionTemplate() {
+//        return new TransactionTemplate(transactionManager()
+//    }
+
 
 }
