@@ -63,10 +63,19 @@
 
 ## 版本记录
 
-### v1.0.0
+### v1.0.1
 
 2018-07-20:
 
 - springboot集成mybatis
 
 - 添加动态数据源解决方案[dynamic.datasource](https://github.com/sunnyWu1104/dynamic-dataresource)（对外提供的版本）
+
+2018-07-23:
+
+- springboot下@Value属性注入简单使用(PropertiesTest)
+
+    ```
+    1. 使用PlaceHolder方式，格式:${}
+    2. 使用SqEL(spring expression language)表达式，格式:#{}
+    ```
