@@ -1,0 +1,88 @@
+# 共有8个级别，按照从低到高为：ALL < TRACE < DEBUG < INFO < WARN < ERROR < FATAL < OFF。
+
+Appenders:
+  Console:  #输出到控制台
+    name: CONSOLE #Appender命名
+    target: SYSTEM_OUT
+    PatternLayout:
+      pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
+
+  RollingFile: # 输出到文件，超过10GB归档
+    - name: ROLLING_TREACE_FILE
+      Filters:
+        ThresholdFilter:
+          - level: trace
+          # 以下配置说明：
+            # onmatch="accept" 表示匹配此级别及以上
+            # onmatch="deny" 表示不匹配此级别及以上
+            # onmismatch="deny" 表示不匹配比此日志级别低的,只输出info及以上级别的信息（onMatch），其他的直接拒绝（onMismatch）
+            # onmismatch="neutral" 表示匹配比此日志级别低的,不输出info及以上级别的信息（onMatch），其他的输出（onMismatch）
+#            onMatch: ACCEPT
+#            onMismatch: DENY
+      ignoreExceptions: false
+      fileName: /data/www/logs/apps/springboot/trace.log
+      filePattern: "/data/www/logs/apps/springboot/%d{yyyy-MM-dd}/trace -%d{yyyy-MM-dd}-%i.log.gz"
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: "10 GB"
+      DefaultRolloverStrategy:
+        max: 1000 # 文件最多1000个
+
+    - name: ROLLING_INFO_FILE
+      Filters:
+        ThresholdFilter:
+          - level: info
+      ignoreExceptions: false
+      fileName: /data/www/logs/apps/springboot/info.log
+      filePattern: "/data/www/logs/apps/springboot/%d{yyyy-MM-dd}/info -%d{yyyy-MM-dd}-%i.log.gz"
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: "10 GB"
+      DefaultRolloverStrategy:
+        max: 1000 # 文件最多1000个
+
+    - name: ROLLING_ERROR_FILE
+      Filters:
+        ThresholdFilter:
+          - level: error
+#            onMatch: ACCEPT
+#            onMismatch: DENY
+      ignoreExceptions: false
+      fileName: /data/www/logs/apps/springboot/error.log
+      filePattern: "/data/www/logs/apps/springboot/%d{yyyy-MM-dd}/error -%d{yyyy-MM-dd}-%i.log.gz"
+      PatternLayout:
+        pattern: "%d{yyyy-MM-dd HH:mm:ss,SSS}:%4p %t (%F:%L) - %m%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: "10 GB"
+      DefaultRolloverStrategy:
+        max: 1000 # 文件最多1000个
+
+Loggers:
+  # <!-- AsyncRoot - 异步记录日志 - 需要LMAX Disruptor的支持 -->
+  AsyncRoot:
+    level: info
+    includeLocation: true
+    AppenderRef:
+      - ref: CONSOLE
+      - ref: ROLLING_INFO_FILE
+      - ref: ROLLING_ERROR_FILE
+      - ref: ROLLING_TREACE_FILE
+#  Root:
+#    level: info
+#    AppenderRef:
+#      - ref: CONSOLE
+#      - ref: ROLLING_INFO_FILE
+#      - ref: ROLLING_ERROR_FILE
+#      - ref: ROLLING_TREACE_FILE
+#  Logger: #单独设置某些包的输出级别
+#    - name: com.example.springboot2docker #复数加上-
+#      additivity: false #去除重复的log
+#      level: trace
+#      AppenderRef:
+#        - ref: CONSOLE #复数加上-
+#        - ref: ROLLING_INFO_FILE #复数加上
