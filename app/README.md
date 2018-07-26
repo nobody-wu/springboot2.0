@@ -79,3 +79,15 @@
     1. 使用PlaceHolder方式，格式:${}
     2. 使用SqEL(spring expression language)表达式，格式:#{}
     ```
+- [spring schema自定义扩展](https://veryjj.github.io/2018/04/22/Dubbo%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90-Spring-Bean%E6%B3%A8%E5%86%8C/)
+    
+    ```
+    Spring 2.5在2.0的基于Schema的Bean配置的基础之上，再增加了扩展XML配置的机制。通过该机制，我们可以编写自己的Schema，并根据自定义的Schema用自定的标签配置Bean。要使用的Spring的扩展XML配置机制，也比较简单，有以下4个步骤：
+    
+    1. 编写自定义Schema文件；
+    2. 编写自定义NamespaceHandler；
+    3. 编写解析BeanDefinition的parser
+    4. 在Spring中注册上述组建
+    
+    参考：http://www.w3school.com.cn/schema/schema_elements_ref.asp 
+    ```
