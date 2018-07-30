@@ -14,8 +14,8 @@
         <!--<property name="providerType" value="IP_CONFIGURABLE"/>-->
         <property name="providerType" value="PROPERTY"/>
         <!--<property name="ips" value="${vesta.ips}"/>-->
-        <property name="genMethod" value="${vesta.genMethod}"/>
-        <property name="machineId" value="${vesta.machine}"/>
+        <!--<property name="genMethod" value="${vesta.genMethod}"/> 默认为-1 -->
+        <!--<property name="machineId" value="${vesta.machine}"/> 默认为0，在vesta的第二版可以由zk产生 -->
     </bean>
 
 </beans>

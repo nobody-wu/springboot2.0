@@ -13,6 +13,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.beans.PropertyVetoException;
 
+/**
+ * 这个工厂类也可以用vesta源码里的
+ */
 public class IdServiceFactoryBean implements FactoryBean<IdService> {
     protected final Logger log = LoggerFactory
             .getLogger(com.robert.vesta.service.factory.IdServiceFactoryBean.class);
