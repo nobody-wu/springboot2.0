@@ -3,7 +3,6 @@ package com.example.service;
 import com.example.service.vo.TestObject;
 import com.example.springboot2docker.util.FieldValueUtils;
 import com.example.springboot2docker.vo.VariableContact;
-import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 

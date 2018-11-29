@@ -2,12 +2,6 @@ package com.example.springboot2docker.vo;
 
 import com.example.springboot2docker.annotation.RiskKey;
 
-/**
- * Created with IntelliJ IDEA.
- * User: yujianfu (mr.vencnet@gmail.com)
- * Date: 2018/8/22
- * Time: 上午9:45
- */
 public class VariableContact {
 
 
